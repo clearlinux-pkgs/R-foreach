@@ -4,7 +4,7 @@
 #
 Name     : R-foreach
 Version  : 1.4.3
-Release  : 4
+Release  : 5
 URL      : https://cran.r-project.org/src/contrib/foreach_1.4.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/foreach_1.4.3.tar.gz
 Summary  : Provides Foreach Looping Construct for R
@@ -23,9 +23,12 @@ No detailed description available
 %setup -q -c -n foreach
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1484536999
 
 %install
 rm -rf %{buildroot}
+export SOURCE_DATE_EPOCH=1484536999
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -35,7 +38,7 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
-R CMD INSTALL --install-tests --build  -l %{buildroot}/usr/lib64/R/library foreach
+R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library foreach
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
 export LANG=C
