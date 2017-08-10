@@ -4,7 +4,7 @@
 #
 Name     : R-foreach
 Version  : 1.4.3
-Release  : 14
+Release  : 15
 URL      : https://cran.r-project.org/src/contrib/foreach_1.4.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/foreach_1.4.3.tar.gz
 Summary  : Provides Foreach Looping Construct for R
@@ -17,7 +17,13 @@ BuildRequires : R-randomForest
 BuildRequires : clr-R-helpers
 
 %description
-No detailed description available
+idiom that allows for iterating over elements in a collection,
+        without the use of an explicit loop counter.  This package in
+        particular is intended to be used for its return value, rather
+        than for its side effects.  In that sense, it is similar to the
+        standard lapply function, but doesn't require the evaluation
+        of a function.  Using foreach without side effects also
+        facilitates executing the loop in parallel.
 
 %prep
 %setup -q -c -n foreach
@@ -27,11 +33,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1496606279
+export SOURCE_DATE_EPOCH=1502399778
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1496606279
+export SOURCE_DATE_EPOCH=1502399778
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
