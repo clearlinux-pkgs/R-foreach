@@ -1,5 +1,5 @@
 PKG_NAME := R-foreach
-URL := https://cran.r-project.org/src/contrib/foreach_1.4.3.tar.gz
+URL = https://cran.r-project.org/src/contrib/foreach_1.4.4.tar.gz
 
 
 include ../common/Makefile.common
