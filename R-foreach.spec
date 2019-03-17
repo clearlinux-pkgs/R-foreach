@@ -4,7 +4,7 @@
 #
 Name     : R-foreach
 Version  : 1.4.4
-Release  : 35
+Release  : 36
 URL      : https://cran.r-project.org/src/contrib/foreach_1.4.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/foreach_1.4.4.tar.gz
 Summary  : Provides Foreach Looping Construct for R
@@ -14,7 +14,7 @@ Requires: R-iterators
 Requires: R-randomForest
 BuildRequires : R-iterators
 BuildRequires : R-randomForest
-BuildRequires : clr-R-helpers
+BuildRequires : buildreq-R
 
 %description
 idiom that allows for iterating over elements in a collection,
@@ -33,11 +33,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1513873978
+export SOURCE_DATE_EPOCH=1552790444
 
 %install
+export SOURCE_DATE_EPOCH=1552790444
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1513873978
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -55,6 +55,11 @@ echo "FFLAGS = $FFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 echo "CXXFLAGS = $CXXFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library foreach
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i.avx2 ~/.stash/; done
+echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
+R CMD INSTALL --preclean --install-tests --no-test-load --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library foreach
+for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx512 ; mv $i.avx512 ~/.stash/; done
 echo "CFLAGS = $CFLAGS -ftree-vectorize " > ~/.R/Makevars
 echo "FFLAGS = $FFLAGS -ftree-vectorize " >> ~/.R/Makevars
 echo "CXXFLAGS = $CXXFLAGS -ftree-vectorize " >> ~/.R/Makevars
@@ -67,8 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library foreach|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  foreach || :
 
 
 %files
@@ -127,6 +131,7 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/foreach/help/paths.rds
 /usr/lib64/R/library/foreach/html/00Index.html
 /usr/lib64/R/library/foreach/html/R.css
+/usr/lib64/R/library/foreach/tests/doRUnit.R
 /usr/lib64/R/library/foreach/unitTests/combineTest.R
 /usr/lib64/R/library/foreach/unitTests/errorTest.R
 /usr/lib64/R/library/foreach/unitTests/foreachTest.R
