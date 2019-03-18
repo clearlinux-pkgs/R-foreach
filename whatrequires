@@ -1,5 +1,6 @@
 # This file contains recursive sources that require this package
 R-ClustVarLV
+R-NMF
 R-TSP
 R-blockmodeling
 R-doMC
@@ -9,5 +10,7 @@ R-doRNG
 R-doSNOW
 R-gam
 R-glmnet
+R-joineRML
 R-plyr
 R-strucchange
+R-taxize
