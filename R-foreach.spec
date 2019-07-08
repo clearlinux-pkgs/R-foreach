@@ -4,12 +4,16 @@
 #
 Name     : R-foreach
 Version  : 1.4.4
-Release  : 42
+Release  : 43
 URL      : https://cran.r-project.org/src/contrib/foreach_1.4.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/foreach_1.4.4.tar.gz
 Summary  : Provides Foreach Looping Construct for R
 Group    : Development/Tools
 License  : Apache-2.0
+Requires: R-doSNOW
+Requires: R-iterators
+Requires: R-randomForest
+BuildRequires : R-doSNOW
 BuildRequires : R-iterators
 BuildRequires : R-randomForest
 BuildRequires : buildreq-R
@@ -30,13 +34,13 @@ idiom that allows for iterating over elements in a collection,
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552946700
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562623115
 
 %install
-export SOURCE_DATE_EPOCH=1552946700
+export SOURCE_DATE_EPOCH=1562623115
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -65,12 +69,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  foreach || :
+R CMD check --no-manual --no-examples --no-codoc foreach || :
 
 
 %files
