@@ -4,19 +4,18 @@
 #
 Name     : R-foreach
 Version  : 1.4.7
-Release  : 44
+Release  : 45
 URL      : https://cran.r-project.org/src/contrib/foreach_1.4.7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/foreach_1.4.7.tar.gz
 Summary  : Provides Foreach Looping Construct
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: R-doSNOW
 Requires: R-iterators
-Requires: R-randomForest
 BuildRequires : R-doSNOW
 BuildRequires : R-iterators
 BuildRequires : R-randomForest
 BuildRequires : buildreq-R
+BuildRequires : util-linux
 
 %description
 idiom that allows for iterating over elements in a collection,
@@ -35,10 +34,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564418711
+export SOURCE_DATE_EPOCH=1571832411
 
 %install
-export SOURCE_DATE_EPOCH=1564418711
+export SOURCE_DATE_EPOCH=1571832411
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "

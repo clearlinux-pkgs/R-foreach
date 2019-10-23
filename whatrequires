@@ -13,6 +13,6 @@ R-doSNOW
 R-gam
 R-glmnet
 R-joineRML
+R-pdp
 R-plyr
-R-strucchange
 R-taxize
