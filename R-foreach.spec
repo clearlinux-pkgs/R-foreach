@@ -4,41 +4,43 @@
 #
 Name     : R-foreach
 Version  : 1.5.0
-Release  : 50
+Release  : 51
 URL      : https://cran.r-project.org/src/contrib/foreach_1.5.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/foreach_1.5.0.tar.gz
 Summary  : Provides Foreach Looping Construct
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: R-doParallel
 Requires: R-iterators
-Requires: R-randomForest
-BuildRequires : R-doParallel
 BuildRequires : R-iterators
-BuildRequires : R-randomForest
 BuildRequires : buildreq-R
 
 %description
-# foreach
-[![CRAN](https://www.r-pkg.org/badges/version/foreach)](https://cran.r-project.org/package=foreach)
+idiom that allows for iterating over elements in a collection,
+        without the use of an explicit loop counter.  This package in
+        particular is intended to be used for its return value, rather
+        than for its side effects.  In that sense, it is similar to the
+        standard lapply function, but doesn't require the evaluation
+        of a function.  Using foreach without side effects also
+        facilitates executing the loop in parallel.
 
 %prep
 %setup -q -c -n foreach
+cd %{_builddir}/foreach
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585691675
+export SOURCE_DATE_EPOCH=1589402368
 
 %install
-export SOURCE_DATE_EPOCH=1585691675
+export SOURCE_DATE_EPOCH=1589402368
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
