@@ -4,7 +4,7 @@
 #
 Name     : R-foreach
 Version  : 1.5.0
-Release  : 51
+Release  : 52
 URL      : https://cran.r-project.org/src/contrib/foreach_1.5.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/foreach_1.5.0.tar.gz
 Summary  : Provides Foreach Looping Construct
@@ -32,10 +32,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1589402368
+export SOURCE_DATE_EPOCH=1589566834
 
 %install
-export SOURCE_DATE_EPOCH=1589402368
+export SOURCE_DATE_EPOCH=1589566834
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
