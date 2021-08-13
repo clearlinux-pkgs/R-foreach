@@ -4,7 +4,7 @@
 #
 Name     : R-foreach
 Version  : 1.5.1
-Release  : 61
+Release  : 62
 URL      : https://cran.r-project.org/src/contrib/foreach_1.5.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/foreach_1.5.1.tar.gz
 Summary  : Provides Foreach Looping Construct
